@@ -5,13 +5,15 @@
  */
 package com.mycompany.questionaire;
 
-import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,46 +23,67 @@ import javax.swing.JRadioButton;
  * @author carst
  */
 public final class QuistionaireView extends Frame{
-    private JFrame pnl;
     private Questionaire questionaire;
-    private JButton submit = new JButton("Submit");
-    private List radioGrps;
+    private JButton submit;
+    private List<ButtonGroup> radioGrps;
+    private Label score;   
     
     
-    
-    public QuistionaireView(Questionaire questionaire){
+    public QuistionaireView(Questionaire questionaire, JFrame frame){
         this.questionaire = questionaire;
-        pnl = new JFrame();
-        pnl.setLayout(new FlowLayout());
+        
+        submit = new JButton("Submit");
+        submit.setAlignmentY(LEFT_ALIGNMENT);
         radioGrps = new ArrayList();
         
+        score = new Label();
+        
         for (int i = 0; i < questionaire.getQuestions().size(); i++) {
-            Panel questionPnl = new Panel(new FlowLayout());
+            Panel questionPnl = new Panel();
             questionPnl.setSize(200, 200);
-            createQuesion((Question)questionaire.getQuestions().get(i), questionPnl);
+            frame.add(createQuesion((Question)questionaire.getQuestions().get(i), questionPnl));
         }
-        pnl.setVisible(true);
+        
+        frame.add(submit);
         
         submit.addActionListener((ActionEvent e) -> {
-            for (int i = 0; i < pnl.getComponents().length; i++) {
-                
-                ButtonGroup btngrp = (ButtonGroup) radioGrps.get(i);
+            int points = 0;
+            
+            for (int i = 0; i < questionaire.getQuestions().size(); i++) {
+                Question q = (Question)questionaire.getQuestions().get(i);
+                ButtonGroup bg = (ButtonGroup)radioGrps.get(i);
+                if (q.getAnswers().get(q.getCorrectAnswer()) == getSelectedButton(bg)) {
+                    points += q.getPoints();
+                }
             }
-            //for (Object question : questionaire.getQuestions()) {
-            //    int score = 0;
+            if (checkAllAnswers()) {
+                int totalScore = this.questionaire.getTotalPoints();
+                int pointPerc = points*100/this.questionaire.getTotalPoints();
                 
-            //}    
+                if (pointPerc < 80) {
+                    this.score.setForeground(Color.RED);
+                }else{
+                    this.score.setForeground(Color.GREEN);
+                }
+                
+                score.setText("Score: " + points + "/" + totalScore + ": " + pointPerc + "%");
+                
+            } else {
+                score.setForeground(Color.BLACK);
+                score.setText("Please answer all questions!");
+            }
+            
+            frame.setVisible(true);
+            
         });
         
-        pnl.add(submit);
+        frame.add(this.score);
     }
     
     
     
-    public void createQuesion(Question question, Panel questionPnl){
+    public Panel createQuesion(Question question, Panel questionPnl){
         
-        //Panel questionpnl = new Panel(new FlowLayout());
-        pnl.add(questionPnl);
         Label questionDes = new Label(question.getDescription());
         
         questionPnl.add(questionDes);
@@ -72,11 +95,54 @@ public final class QuistionaireView extends Frame{
            radioGrp[i] = new JRadioButton((String)question.getAnswers().get(i));
            btnGrp.add(radioGrp[i]);
            questionPnl.add(radioGrp[i]);
-            System.out.println(radioGrp[i]);
         }
         
         radioGrps.add(btnGrp);
         questionPnl.setVisible(true);
         
+        return questionPnl;
+    }
+    
+    public String getSelectedButton(ButtonGroup bg){
+        String selectedButton = "";
+        for (Enumeration<AbstractButton> buttons = bg.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                selectedButton = button.getText();
+            }
+        }
+        
+        return selectedButton;
+    }
+    
+    public boolean checkAllAnswers(){
+        boolean isAnswered = true;
+        
+        for (int i = 0; i < radioGrps.size(); i++) {
+            ButtonGroup bg = radioGrps.get(i);
+            if(bg.getSelection() == null){
+                isAnswered = false;
+            }
+        }
+        return isAnswered;
+    }
+    
+    public List getUnansweredQuestion(){
+        List<ButtonGroup> unansweredQ = null;
+        for (int i = 0; i < radioGrps.size(); i++) {
+            ButtonGroup bg = radioGrps.get(i);
+            if (bg.getSelection() == null) {
+                unansweredQ.add(bg);
+            }
+        }
+        
+        return unansweredQ;
+    }
+    
+    public void highLightUnansweredQuestions(List<ButtonGroup> bg){
+        for (int i = 0; i < bg.size(); i++) {
+            System.out.print("unanswered questions: " + bg.get(i));
+        }
     }
 }

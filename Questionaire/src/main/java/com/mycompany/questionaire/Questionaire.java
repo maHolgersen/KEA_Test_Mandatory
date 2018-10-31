@@ -25,7 +25,7 @@ public class Questionaire {
     public int getTotalPoints(){
         int totalPoints = 0;
         for (int i = 0; i < questions.size(); i++) {
-            totalPoints =+ questions.get(i).getPoints();
+            totalPoints += questions.get(i).getPoints();
         }
         return totalPoints;
     }

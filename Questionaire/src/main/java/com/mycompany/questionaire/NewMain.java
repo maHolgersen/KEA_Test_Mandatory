@@ -5,7 +5,10 @@
  */
 package com.mycompany.questionaire;
 
+import java.awt.FlowLayout;
+import java.awt.ScrollPane;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,6 +21,12 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        JFrame mainFrame = new JFrame();
+        mainFrame.setLayout(new FlowLayout());
+        mainFrame.setVisible(true);
+        
+        mainFrame.setSize(300, 300);
+                
         String ans1 = "ans1";
         String ans2 = "ans2";
         String ans3 = "ans3";
@@ -40,21 +49,14 @@ public class NewMain {
         questions.add(q2);
         questions.add(q3);
         questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        questions.add(q4);
-        
+
         Questionaire questionaire = new Questionaire(questions);
         
-        QuistionaireView qView = new QuistionaireView(questionaire);
+        QuistionaireView qv = new QuistionaireView(questionaire, mainFrame);
+        mainFrame.setVisible(false);
+        mainFrame.setVisible(true);
         
-        System.out.println(questionaire.getQuestions().size());
+        
     }
     
 }
