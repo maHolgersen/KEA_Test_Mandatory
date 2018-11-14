@@ -6,7 +6,6 @@
 package com.mycompany.questionaire;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -17,12 +16,13 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 /**
  *
  * @author carst
  */
-public final class QuistionaireView extends Frame{
+public final class QuistionaireView extends JPanel{
     private Questionaire questionaire;
     private JButton submit;
     private List<ButtonGroup> radioGrps;
@@ -78,6 +78,7 @@ public final class QuistionaireView extends Frame{
         });
         
         frame.add(this.score);
+        frame.repaint();
     }
     
     

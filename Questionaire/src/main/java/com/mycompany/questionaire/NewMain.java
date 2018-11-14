@@ -6,7 +6,6 @@
 package com.mycompany.questionaire;
 
 import java.awt.FlowLayout;
-import java.awt.ScrollPane;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -20,11 +19,11 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         JFrame mainFrame = new JFrame();
         mainFrame.setLayout(new FlowLayout());
         mainFrame.setVisible(true);
-        
+        //  MainPage mf = new MainPage(1200, 900);
         mainFrame.setSize(300, 300);
                 
         String ans1 = "ans1";
@@ -38,10 +37,10 @@ public class NewMain {
         answers.add(ans3);
         answers.add(ans4);
         
-        Question q1 = new Question(answers, "q1", 1, 10);
-        Question q2 = new Question(answers, "q2", 1, 10);
-        Question q3 = new Question(answers, "q3", 1, 10);
-        Question q4 = new Question(answers, "q4", 1, 10);
+        Question q1 = new Question(answers, "q1", 1, 150);
+        Question q2 = new Question(answers, "q2", 1, 100);
+        Question q3 = new Question(answers, "q3", 1, 200);
+        Question q4 = new Question(answers, "q4", 1, 100);
         
         ArrayList questions = new ArrayList();
         
@@ -55,6 +54,8 @@ public class NewMain {
         QuistionaireView qv = new QuistionaireView(questionaire, mainFrame);
         mainFrame.setVisible(false);
         mainFrame.setVisible(true);
+
+          
         
         
     }
