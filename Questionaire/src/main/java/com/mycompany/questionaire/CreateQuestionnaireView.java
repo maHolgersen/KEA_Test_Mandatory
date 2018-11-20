@@ -29,8 +29,10 @@ public class CreateQuestionnaireView extends JPanel{
     private JLabel headder;
     private List questions;
     private JPanel buttonPanel;
-    
     private JButton addQuestion;
+    private JTextArea questionnaireTitle;
+    
+    private static final String FILE_STRING = System.getProperty("user.dir");
     
     public CreateQuestionnaireView(MainPage mf){
         settupPanel(mf);
@@ -43,15 +45,19 @@ public class CreateQuestionnaireView extends JPanel{
     public void addQuestion(MainPage mf){
         JPanel question = new JPanel();
         question.setLayout(new FlowLayout());
-        question.setPreferredSize(new Dimension(getPreferredSize().width/3, getPreferredSize().height/10));
+        question.setPreferredSize(new Dimension(getPreferredSize().width/3, 150));
+        
         JTextArea questionDesc = new JTextArea("Add your question here");
             questionDesc.setPreferredSize(new Dimension(question.getPreferredSize().width, 50));
             questionDesc.setName("question");
         JTextField optionOne = new JTextField("Add an answer");
+            optionOne.setPreferredSize(new Dimension(question.getPreferredSize().width, 20));
             optionOne.setName("answer");
         JTextField optionTwo = new JTextField("Add an answer");
+            optionTwo.setPreferredSize(new Dimension(question.getPreferredSize().width, 20));
             optionTwo.setName("answer");
         JTextField optionThree = new JTextField("Add an answer");
+            optionThree.setPreferredSize(new Dimension(question.getPreferredSize().width, 20));
             optionThree.setName("answer");
         
         question.add(questionDesc);
@@ -111,7 +117,7 @@ public class CreateQuestionnaireView extends JPanel{
             Questionnaire questionnaire = new Questionnaire(questionList);
             
             try {
-                FileOutputStream fileOut = new FileOutputStream("\\questionnaires");
+                FileOutputStream fileOut = new FileOutputStream(FILE_STRING + "\\questionnaires\\" + questionnaireTitle.getText());
                 ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
                 objectOut.writeObject(questionnaire);
                 objectOut.close();
@@ -135,8 +141,14 @@ public class CreateQuestionnaireView extends JPanel{
         
         buttonPanel = new JPanel();
         buttonPanel.setPreferredSize(new Dimension(mf.getWidth() - 20, 50));
-        
         add(buttonPanel);
+        
+        JPanel titlePanel = new JPanel();
+        titlePanel.setPreferredSize(new Dimension(mf.getWidth(), 50));
+        questionnaireTitle = new JTextArea("Add a title to your questionnaire!");
+        questionnaireTitle.setPreferredSize(new Dimension(200, 50));
+        titlePanel.add(questionnaireTitle);
+        add(titlePanel);
         
         saveQuestionnaireButton();
         addQuestionButton(mf);

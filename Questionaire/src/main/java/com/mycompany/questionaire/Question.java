@@ -28,6 +28,7 @@ public class Question implements Serializable{
     
     public Question(){
         answers = new ArrayList();
+        points  = 10;
     }
     
     public void removeAnswer(String answer){

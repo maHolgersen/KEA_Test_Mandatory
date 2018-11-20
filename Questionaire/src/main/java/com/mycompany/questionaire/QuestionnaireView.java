@@ -15,7 +15,6 @@ import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 /**
@@ -25,11 +24,12 @@ import javax.swing.JRadioButton;
 public final class QuestionnaireView extends JPanel{
     private Questionnaire questionaire;
     private JButton submit;
+    private JButton mainMenu;
     private List<ButtonGroup> radioGrps;
     private Label score;   
     
     
-    public QuestionnaireView(Questionnaire questionaire, JFrame frame){
+    public QuestionnaireView(Questionnaire questionaire, MainPage frame){
         this.questionaire = questionaire;
         
         submit = new JButton("Submit");
@@ -80,8 +80,6 @@ public final class QuestionnaireView extends JPanel{
         frame.add(this.score);
         frame.repaint();
     }
-    
-    
     
     public Panel createQuesion(Question question, Panel questionPnl){
         
