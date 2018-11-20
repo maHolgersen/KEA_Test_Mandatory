@@ -22,14 +22,14 @@ import javax.swing.JRadioButton;
  *
  * @author carst
  */
-public final class QuistionaireView extends JPanel{
-    private Questionaire questionaire;
+public final class QuestionnaireView extends JPanel{
+    private Questionnaire questionaire;
     private JButton submit;
     private List<ButtonGroup> radioGrps;
     private Label score;   
     
     
-    public QuistionaireView(Questionaire questionaire, JFrame frame){
+    public QuestionnaireView(Questionnaire questionaire, JFrame frame){
         this.questionaire = questionaire;
         
         submit = new JButton("Submit");

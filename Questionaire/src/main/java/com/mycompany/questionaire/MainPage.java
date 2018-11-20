@@ -8,30 +8,30 @@ package com.mycompany.questionaire;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
 /**
  *
  * @author carst
  */
-public class MainPage extends Frame{
-    private JFrame mainFrame;
+public class MainPage extends JFrame{
     private JPanel cards;
     private JPanel mainCard;
     private JButton admin;
     private JButton guest;
     private JPanel buttonPanel;
     
+    private CardLayout cl;
+    
     public MainPage(int width, int height){
-        mainFrame = new JFrame();
-        mainFrame.setSize(width, height);
-        mainFrame.setLayout(new FlowLayout());
-        
+        setSize(width, height);
+        setLayout(new FlowLayout());
+                
         cards = new JPanel(new CardLayout());
         
         mainCard = new JPanel(new FlowLayout());
@@ -41,12 +41,14 @@ public class MainPage extends Frame{
         buttonPanel.setLayout(new FlowLayout());
         buttonPanel.setPreferredSize(new Dimension(width, height * 80 / 100));
         
+        cl = (CardLayout)cards.getLayout();
+        
         JTextPane welcomeLabel;
         welcomeLabel = new JTextPane();
         welcomeLabel.setText("Welcome to questionaire.TEST please choose admin if you're to create or configure a questionaire"
                 + "\nOtherwise choose guest if you are here to answer some questionaires!");
         welcomeLabel.setEditable(false);
-        welcomeLabel.setBackground(mainFrame.getBackground());
+        welcomeLabel.setBackground(getBackground());
         welcomeLabel.setPreferredSize(new Dimension(width / 2, height * 80 / 100));
         
         mainCard.add(welcomeLabel);
@@ -55,31 +57,37 @@ public class MainPage extends Frame{
         admin = createAdminButton();
         admin.setVisible(true);
         
-        
         guest = createGuestButton();
         guest.setVisible(true);
         
         buttonPanel.add(guest);
         buttonPanel.add(admin);
         
-        cards.add(mainCard, "mainCard");
+        createCards();
         
-        mainFrame.add(cards);
+        add(cards);
         buttonPanel.setVisible(true);
-        mainFrame.setVisible(true);
+        setVisible(true);
+        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }
     
+    private void createCards(){
+        cards.add(mainCard, "maincard");
+        JPanel adView = new AdminView(getWidth(), getHeight(), this);
+        JPanel createQuestionnaireView = new CreateQuestionnaireView(this);
+        
+        cards.add(adView, "admin");
+        cards.add(createQuestionnaireView, "createquestionnaireview");
+    }
     
     private JButton createAdminButton(){
         JButton button = new JButton("Admin");
         button.addActionListener((ActionEvent e) -> {
            //add action to change to AdminView 
-            JPanel adView = new AdminView(mainFrame.getWidth(), mainFrame.getHeight());
-            cards.add(adView, "admin");
-            CardLayout cl = (CardLayout)cards.getLayout();
             cl.show(cards, "admin");
-            mainFrame.setVisible(true);
+            setVisible(true);
        
         });
         return button;
@@ -95,9 +103,14 @@ public class MainPage extends Frame{
         return button;
     }
 
-    public JFrame getMainFrame(){
-        return mainFrame;
+    public JPanel getCards(){
+        return cards;
     }
+    
+    public CardLayout getCardLayout(){
+        return cl;
+    }
+    
         
     
 }

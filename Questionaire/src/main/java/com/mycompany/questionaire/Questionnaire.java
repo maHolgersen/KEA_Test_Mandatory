@@ -5,20 +5,22 @@
  */
 package com.mycompany.questionaire;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author carst
  */
-public class Questionaire {
+public class Questionnaire implements Serializable{
     private List<Question> questions;
+    private static final long serialVersionUID = 1L;
     
-    public Questionaire(){
+    public Questionnaire(){
         
     }
     
-    public Questionaire(List questions){
+    public Questionnaire(List questions){
         this.questions = questions;
     }
     
@@ -36,5 +38,10 @@ public class Questionaire {
     
     public List getQuestions(){
         return questions;
+    }
+    
+    @Override
+    public String toString(){
+       return questions.toString();
     }
 }

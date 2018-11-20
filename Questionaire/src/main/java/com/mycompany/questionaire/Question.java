@@ -5,13 +5,15 @@
  */
 package com.mycompany.questionaire;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author carst
  */
-public class Question {
+public class Question implements Serializable{
     private List answers;
     private String description;
     private int correctAnswer;
@@ -25,7 +27,7 @@ public class Question {
     }
     
     public Question(){
-        
+        answers = new ArrayList();
     }
     
     public void removeAnswer(String answer){
