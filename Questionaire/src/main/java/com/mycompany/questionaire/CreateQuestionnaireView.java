@@ -98,16 +98,15 @@ public class CreateQuestionnaireView extends JPanel{
         
         saveQuestionnaire.addActionListener((ActionEvent e) -> {
            //todo: Create action for saving questionnaire.
-            Question q = new Question();
             ArrayList questionList = new ArrayList();
             for (int i = 0; i < questions.size(); i++) {
                 JPanel question = (JPanel)questions.get(i);
+                Question q = new Question();
                 for (int j = 0; j < question.getComponentCount(); j++) {
-                    
-                    if (question.getComponent(j).getName() == "question") {
+                    if (question.getComponent(j).getName().equals("question")) {
                         JTextArea ta = (JTextArea)question.getComponent(j);
                         q.setDescription(ta.getText());
-                    } else if (question.getComponent(j).getName() == "answer") {
+                    } else if (question.getComponent(j).getName().equals("answer")) {
                         JTextField tf = (JTextField)question.getComponent(j);
                         q.addAnswer(tf.getText(), true);
                     }

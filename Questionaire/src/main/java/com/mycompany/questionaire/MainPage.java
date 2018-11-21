@@ -76,9 +76,11 @@ public class MainPage extends JFrame{
         cards.add(mainCard, "maincard");
         JPanel adView = new AdminView(getWidth(), getHeight(), this);
         JPanel createQuestionnaireView = new CreateQuestionnaireView(this);
+        JPanel guestView = new QuestionnaireView(this);
         
         cards.add(adView, "admin");
         cards.add(createQuestionnaireView, "createquestionnaireview");
+        cards.add(guestView, "guest");
     }
     
     private JButton createAdminButton(){
@@ -95,7 +97,7 @@ public class MainPage extends JFrame{
     private JButton createGuestButton(){
         JButton button = new JButton("Guest");
         button.addActionListener((ActionEvent e) -> {
-           //add action to change to guestView 
+           cl.show(cards, "guest");
                     
         });
         
@@ -110,6 +112,6 @@ public class MainPage extends JFrame{
         return cl;
     }
     
-        
+     
     
 }
