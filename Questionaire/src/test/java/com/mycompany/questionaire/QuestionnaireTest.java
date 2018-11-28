@@ -5,6 +5,8 @@
  */
 package com.mycompany.questionaire;
 
+import com.mycompany.questionnaire.Question;
+import com.mycompany.questionnaire.Questionnaire;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
