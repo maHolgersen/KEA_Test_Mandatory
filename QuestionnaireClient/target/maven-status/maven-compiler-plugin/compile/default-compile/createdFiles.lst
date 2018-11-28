@@ -1,0 +1,8 @@
+com\kea\services\QuestionnaireService_Service.class
+com\kea\services\QuestionnaireService.class
+com\kea\services\GetQuestionnaireResponse.class
+com\kea\services\ObjectFactory.class
+com\kea\services\SaveQuestionnaireResponse.class
+com\kea\services\GetQuestionnaire.class
+com\kea\services\SaveQuestionnaire.class
+com\kea\services\package-info.class
