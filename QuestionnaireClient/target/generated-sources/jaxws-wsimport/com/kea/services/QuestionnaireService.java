@@ -26,6 +26,18 @@ public interface QuestionnaireService {
 
     /**
      * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAllQuestionnaires", targetNamespace = "http://services.kea.com/", className = "com.kea.services.GetAllQuestionnaires")
+    @ResponseWrapper(localName = "getAllQuestionnairesResponse", targetNamespace = "http://services.kea.com/", className = "com.kea.services.GetAllQuestionnairesResponse")
+    @Action(input = "http://services.kea.com/QuestionnaireService/getAllQuestionnairesRequest", output = "http://services.kea.com/QuestionnaireService/getAllQuestionnairesResponse")
+    public String getAllQuestionnaires();
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      */

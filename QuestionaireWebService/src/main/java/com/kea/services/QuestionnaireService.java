@@ -11,6 +11,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import com.mycompany.questionnaire.Questionnaire;
 import com.google.gson.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,5 +34,13 @@ public class QuestionnaireService {
        Gson builder = new GsonBuilder().create();
        Questionnaire q = builder.fromJson(jsonQestionnaire, Questionnaire.class);
        FileController.saveQuestionnaire(q, qName);
+    }
+    
+    @WebMethod
+    public String getAllQuestionnaires(){
+        Gson builder = new GsonBuilder().create();
+        ArrayList list = (ArrayList)FileController.getALlQuestionnaires();
+        String qList = builder.toJson(list, ArrayList.class);
+        return qList;
     }
 }

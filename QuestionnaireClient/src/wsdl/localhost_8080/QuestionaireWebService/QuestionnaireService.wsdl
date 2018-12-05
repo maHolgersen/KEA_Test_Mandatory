@@ -4,6 +4,12 @@
 <xsd:import namespace="http://services.kea.com/" schemaLocation="http://localhost:8080/QuestionaireWebService/QuestionnaireService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="getAllQuestionnaires">
+<part name="parameters" element="tns:getAllQuestionnaires"/>
+</message>
+<message name="getAllQuestionnairesResponse">
+<part name="parameters" element="tns:getAllQuestionnairesResponse"/>
+</message>
 <message name="saveQuestionnaire">
 <part name="parameters" element="tns:saveQuestionnaire"/>
 </message>
@@ -17,6 +23,10 @@
 <part name="parameters" element="tns:getQuestionnaireResponse"/>
 </message>
 <portType name="QuestionnaireService">
+<operation name="getAllQuestionnaires">
+<input wsam:Action="http://services.kea.com/QuestionnaireService/getAllQuestionnairesRequest" message="tns:getAllQuestionnaires"/>
+<output wsam:Action="http://services.kea.com/QuestionnaireService/getAllQuestionnairesResponse" message="tns:getAllQuestionnairesResponse"/>
+</operation>
 <operation name="saveQuestionnaire">
 <input wsam:Action="http://services.kea.com/QuestionnaireService/saveQuestionnaireRequest" message="tns:saveQuestionnaire"/>
 <output wsam:Action="http://services.kea.com/QuestionnaireService/saveQuestionnaireResponse" message="tns:saveQuestionnaireResponse"/>
@@ -28,6 +38,15 @@
 </portType>
 <binding name="QuestionnaireServicePortBinding" type="tns:QuestionnaireService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="getAllQuestionnaires">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="saveQuestionnaire">
 <soap:operation soapAction=""/>
 <input>

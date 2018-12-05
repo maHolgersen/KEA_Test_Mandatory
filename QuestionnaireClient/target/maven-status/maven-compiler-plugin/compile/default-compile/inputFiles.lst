@@ -5,5 +5,8 @@ E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsi
 E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\SaveQuestionnaire.java
 E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\QuestionnaireService.java
 E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\GetQuestionnaireResponse.java
+E:\Git\KEA_Test_Mandatory\QuestionnaireClient\src\main\java\com\kea\clientservlets\CreateQuestionnaireServlet.java
+E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\GetAllQuestionnairesResponse.java
 E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\QuestionnaireService_Service.java
+E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\GetAllQuestionnaires.java
 E:\Git\KEA_Test_Mandatory\QuestionnaireClient\target\generated-sources\jaxws-wsimport\com\kea\services\package-info.java

@@ -24,7 +24,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GetAllQuestionnaires_QNAME = new QName("http://services.kea.com/", "getAllQuestionnaires");
     private final static QName _GetQuestionnaireResponse_QNAME = new QName("http://services.kea.com/", "getQuestionnaireResponse");
+    private final static QName _GetAllQuestionnairesResponse_QNAME = new QName("http://services.kea.com/", "getAllQuestionnairesResponse");
     private final static QName _GetQuestionnaire_QNAME = new QName("http://services.kea.com/", "getQuestionnaire");
     private final static QName _SaveQuestionnaire_QNAME = new QName("http://services.kea.com/", "saveQuestionnaire");
     private final static QName _SaveQuestionnaireResponse_QNAME = new QName("http://services.kea.com/", "saveQuestionnaireResponse");
@@ -53,11 +55,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAllQuestionnaires }
+     * 
+     */
+    public GetAllQuestionnaires createGetAllQuestionnaires() {
+        return new GetAllQuestionnaires();
+    }
+
+    /**
      * Create an instance of {@link GetQuestionnaireResponse }
      * 
      */
     public GetQuestionnaireResponse createGetQuestionnaireResponse() {
         return new GetQuestionnaireResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllQuestionnairesResponse }
+     * 
+     */
+    public GetAllQuestionnairesResponse createGetAllQuestionnairesResponse() {
+        return new GetAllQuestionnairesResponse();
     }
 
     /**
@@ -69,12 +87,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllQuestionnaires }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.kea.com/", name = "getAllQuestionnaires")
+    public JAXBElement<GetAllQuestionnaires> createGetAllQuestionnaires(GetAllQuestionnaires value) {
+        return new JAXBElement<GetAllQuestionnaires>(_GetAllQuestionnaires_QNAME, GetAllQuestionnaires.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetQuestionnaireResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://services.kea.com/", name = "getQuestionnaireResponse")
     public JAXBElement<GetQuestionnaireResponse> createGetQuestionnaireResponse(GetQuestionnaireResponse value) {
         return new JAXBElement<GetQuestionnaireResponse>(_GetQuestionnaireResponse_QNAME, GetQuestionnaireResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllQuestionnairesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.kea.com/", name = "getAllQuestionnairesResponse")
+    public JAXBElement<GetAllQuestionnairesResponse> createGetAllQuestionnairesResponse(GetAllQuestionnairesResponse value) {
+        return new JAXBElement<GetAllQuestionnairesResponse>(_GetAllQuestionnairesResponse_QNAME, GetAllQuestionnairesResponse.class, null, value);
     }
 
     /**

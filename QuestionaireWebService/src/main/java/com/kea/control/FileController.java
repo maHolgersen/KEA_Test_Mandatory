@@ -6,11 +6,14 @@
 package com.kea.control;
 
 import com.mycompany.questionnaire.Questionnaire;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -46,5 +49,19 @@ public class FileController {
             } catch (Exception ex){
                 System.out.println("well shit dident save" + ex);
             }
+    }
+    
+    public static List getALlQuestionnaires(){
+        List qList = new ArrayList();
+        try {
+            for (File listFile : new File(FILE_PATH + "\\questionnaires").listFiles()) {
+                qList.add(listFile.getName());
+            }
+        
+        } catch(Exception ex){
+            System.out.println("well shit dident load: " + ex);
+        }
+        
+        return qList;
     }
 }

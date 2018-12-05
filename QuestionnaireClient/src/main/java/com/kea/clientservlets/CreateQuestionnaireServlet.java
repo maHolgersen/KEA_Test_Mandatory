@@ -8,23 +8,23 @@ package com.kea.clientservlets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kea.services.QuestionnaireService_Service;
+import com.mycompany.questionnaire.Questionnaire;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
-import com.mycompany.questionnaire.Questionnaire;
-import com.mycompany.questionnaire.Question;
 
 /**
  *
  * @author Magnus Holgersen
  */
-@WebServlet(name = "QuestionnaireServlet", urlPatterns = {"/QuestionnaireServlet"})
-public class QuestionnaireServlet extends HttpServlet {
+@WebServlet(name = "CreateQuestionnaireServlet", urlPatterns = {"/CreateQuestionnaireServlet"})
+public class CreateQuestionnaireServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/QuestionaireWebService/QuestionnaireService.wsdl")
     private QuestionnaireService_Service service;
@@ -39,40 +39,42 @@ public class QuestionnaireServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()){ // Call Web Service Operation
+        try (PrintWriter out = response.getWriter()) {
+            
             com.kea.services.QuestionnaireService port = service.getQuestionnaireServicePort();
-            // TODO initialize WS operation arguments here
-            java.lang.String name = request.getParameter("TextArea1");
-            // TODO process result here
-            java.lang.String result = port.getQuestionnaire(name);
+            java.lang.String result = port.getAllQuestionnaires();
             
             Gson builder = new GsonBuilder().create();
-            Questionnaire q = builder.fromJson(result, Questionnaire.class);
+            ArrayList l = builder.fromJson(result, ArrayList.class);
             
-            Question quest = (Question)q.getQuestions().get(0);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < l.size(); i++) {
+                
+                
+                sb.append("<option value='" + l.get(i) + "'>" + l.get(i) + "</option>");
+            }
+            System.out.println(sb.toString());
+            String select = sb.toString();
             
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet QuestionnaireServlet</title>");            
+            out.println("<title>Servlet CreateQuestionnaireServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet QuestionnaireServlet at " + request.getContextPath() + "</h1>");
-            out.println("<p>" + q + "</p>");
+            out.println("<h1>Servlet CreateQuestionnaireServlet at " + request.getContextPath() + "</h1>");
+            out.println("<form name='selectQuestionnaire' method='post' action='QuestionnaireServlet'>");
+            out.println("<select>");
+            out.println(select);
+            out.println("</select>");
+            out.println("<input type='submit' value='Load Questionaire' name='getQuestionaire'> ");
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
-            
-            
-            System.out.println("Result = "+result);
-        } catch (Exception ex) {
-            // TODO handle custom exceptions here
         }
-         
-            
-            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
