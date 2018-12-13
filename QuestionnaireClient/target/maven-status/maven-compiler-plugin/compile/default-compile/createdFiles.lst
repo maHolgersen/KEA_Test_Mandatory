@@ -1,12 +1,11 @@
 com\kea\clientservlets\QuestionnaireServlet.class
-com\kea\services\GetAllQuestionnairesResponse.class
-com\kea\services\GetAllQuestionnaires.class
-com\kea\services\QuestionnaireService_Service.class
 com\kea\services\QuestionnaireService.class
 com\kea\services\GetQuestionnaireResponse.class
 com\kea\services\ObjectFactory.class
 com\kea\services\SaveQuestionnaireResponse.class
-com\kea\clientservlets\CreateQuestionnaireServlet.class
 com\kea\services\GetQuestionnaire.class
-com\kea\services\SaveQuestionnaire.class
 com\kea\services\package-info.class
+com\kea\services\GetAllQuestionnairesResponse.class
+com\kea\services\GetAllQuestionnaires.class
+com\kea\services\QuestionnaireService_Service.class
+com\kea\services\SaveQuestionnaire.class

@@ -23,8 +23,8 @@ import javax.xml.ws.WebServiceRef;
  *
  * @author Magnus Holgersen
  */
-@WebServlet(name = "CreateQuestionnaireServlet", urlPatterns = {"/CreateQuestionnaireServlet"})
-public class CreateQuestionnaireServlet extends HttpServlet {
+@WebServlet(name = "LoadQuestionnaireServlet", urlPatterns = {"/LoadQuestionnaireServlet"})
+public class LoadQuestionnaireServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/QuestionaireWebService/QuestionnaireService.wsdl")
     private QuestionnaireService_Service service;
@@ -51,10 +51,9 @@ public class CreateQuestionnaireServlet extends HttpServlet {
             
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < l.size(); i++) {
-                
-                
                 sb.append("<option value='" + l.get(i) + "'>" + l.get(i) + "</option>");
             }
+            
             System.out.println(sb.toString());
             String select = sb.toString();
             
@@ -62,12 +61,12 @@ public class CreateQuestionnaireServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateQuestionnaireServlet</title>");            
+            out.println("<title>Servlet LoadQuestionnaireServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateQuestionnaireServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoadQuestionnaireServlet at " + request.getContextPath() + "</h1>");
             out.println("<form name='selectQuestionnaire' method='post' action='QuestionnaireServlet'>");
-            out.println("<select>");
+            out.println("<select name='Selected'>");
             out.println(select);
             out.println("</select>");
             out.println("<input type='submit' value='Load Questionaire' name='getQuestionaire'> ");

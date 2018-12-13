@@ -45,14 +45,30 @@ public class QuestionnaireServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()){ // Call Web Service Operation
             com.kea.services.QuestionnaireService port = service.getQuestionnaireServicePort();
             // TODO initialize WS operation arguments here
-            java.lang.String name = request.getParameter("TextArea1");
+            java.lang.String name = request.getParameter("Selected");
             // TODO process result here
             java.lang.String result = port.getQuestionnaire(name);
             
             Gson builder = new GsonBuilder().create();
             Questionnaire q = builder.fromJson(result, Questionnaire.class);
             
-            Question quest = (Question)q.getQuestions().get(0);
+            //Question quest = (Question)q.getQuestions().get(0);
+            
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < q.getQuestions().size(); i++) {
+                Question question = (Question)q.getQuestions().get(i);
+                sb.append("<p>" + question.getDescription() + "</p>");
+                for (int j = 0; j < question.getAnswers().size(); j++) {
+                    sb.append("<input type='radio' name='question" + i + "' value="+question.getAnswers().get(j)+">" + question.getAnswers().get(j));
+                    if (question.getAnswers().size() != j) {
+                        sb.append("<br>");
+                    } else {
+                        sb.append("<hr>");
+                    }
+                }
+            }
+            
+            String radioGroup = sb.toString();
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -60,8 +76,10 @@ public class QuestionnaireServlet extends HttpServlet {
             out.println("<title>Servlet QuestionnaireServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet QuestionnaireServlet at " + request.getContextPath() + "</h1>");
-            out.println("<p>" + q + "</p>");
+            out.println("<h1>" + name + "</h1>");
+            out.println("<form action=''>");
+            out.println(radioGroup);
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
             
