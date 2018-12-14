@@ -16,6 +16,12 @@
 <message name="saveQuestionnaireResponse">
 <part name="parameters" element="tns:saveQuestionnaireResponse"/>
 </message>
+<message name="submitAnswers">
+<part name="parameters" element="tns:submitAnswers"/>
+</message>
+<message name="submitAnswersResponse">
+<part name="parameters" element="tns:submitAnswersResponse"/>
+</message>
 <message name="getQuestionnaire">
 <part name="parameters" element="tns:getQuestionnaire"/>
 </message>
@@ -30,6 +36,10 @@
 <operation name="saveQuestionnaire">
 <input wsam:Action="http://services.kea.com/QuestionnaireService/saveQuestionnaireRequest" message="tns:saveQuestionnaire"/>
 <output wsam:Action="http://services.kea.com/QuestionnaireService/saveQuestionnaireResponse" message="tns:saveQuestionnaireResponse"/>
+</operation>
+<operation name="submitAnswers">
+<input wsam:Action="http://services.kea.com/QuestionnaireService/submitAnswersRequest" message="tns:submitAnswers"/>
+<output wsam:Action="http://services.kea.com/QuestionnaireService/submitAnswersResponse" message="tns:submitAnswersResponse"/>
 </operation>
 <operation name="getQuestionnaire">
 <input wsam:Action="http://services.kea.com/QuestionnaireService/getQuestionnaireRequest" message="tns:getQuestionnaire"/>
@@ -48,6 +58,15 @@
 </output>
 </operation>
 <operation name="saveQuestionnaire">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="submitAnswers">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

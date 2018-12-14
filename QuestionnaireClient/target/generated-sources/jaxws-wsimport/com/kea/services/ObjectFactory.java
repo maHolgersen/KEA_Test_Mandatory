@@ -29,7 +29,9 @@ public class ObjectFactory {
     private final static QName _GetAllQuestionnairesResponse_QNAME = new QName("http://services.kea.com/", "getAllQuestionnairesResponse");
     private final static QName _GetQuestionnaire_QNAME = new QName("http://services.kea.com/", "getQuestionnaire");
     private final static QName _SaveQuestionnaire_QNAME = new QName("http://services.kea.com/", "saveQuestionnaire");
+    private final static QName _SubmitAnswers_QNAME = new QName("http://services.kea.com/", "submitAnswers");
     private final static QName _SaveQuestionnaireResponse_QNAME = new QName("http://services.kea.com/", "saveQuestionnaireResponse");
+    private final static QName _SubmitAnswersResponse_QNAME = new QName("http://services.kea.com/", "submitAnswersResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.kea.services
@@ -47,11 +49,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SubmitAnswers }
+     * 
+     */
+    public SubmitAnswers createSubmitAnswers() {
+        return new SubmitAnswers();
+    }
+
+    /**
      * Create an instance of {@link SaveQuestionnaireResponse }
      * 
      */
     public SaveQuestionnaireResponse createSaveQuestionnaireResponse() {
         return new SaveQuestionnaireResponse();
+    }
+
+    /**
+     * Create an instance of {@link SubmitAnswersResponse }
+     * 
+     */
+    public SubmitAnswersResponse createSubmitAnswersResponse() {
+        return new SubmitAnswersResponse();
     }
 
     /**
@@ -132,12 +150,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubmitAnswers }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.kea.com/", name = "submitAnswers")
+    public JAXBElement<SubmitAnswers> createSubmitAnswers(SubmitAnswers value) {
+        return new JAXBElement<SubmitAnswers>(_SubmitAnswers_QNAME, SubmitAnswers.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveQuestionnaireResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://services.kea.com/", name = "saveQuestionnaireResponse")
     public JAXBElement<SaveQuestionnaireResponse> createSaveQuestionnaireResponse(SaveQuestionnaireResponse value) {
         return new JAXBElement<SaveQuestionnaireResponse>(_SaveQuestionnaireResponse_QNAME, SaveQuestionnaireResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubmitAnswersResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.kea.com/", name = "submitAnswersResponse")
+    public JAXBElement<SubmitAnswersResponse> createSubmitAnswersResponse(SubmitAnswersResponse value) {
+        return new JAXBElement<SubmitAnswersResponse>(_SubmitAnswersResponse_QNAME, SubmitAnswersResponse.class, null, value);
     }
 
 }

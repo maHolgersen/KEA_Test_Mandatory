@@ -12,6 +12,10 @@
 
 <xs:element name="saveQuestionnaireResponse" type="tns:saveQuestionnaireResponse"/>
 
+<xs:element name="submitAnswers" type="tns:submitAnswers"/>
+
+<xs:element name="submitAnswersResponse" type="tns:submitAnswersResponse"/>
+
 <xs:complexType name="getQuestionnaire">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -29,6 +33,19 @@
 </xs:complexType>
 
 <xs:complexType name="getAllQuestionnairesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="submitAnswers">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="submitAnswersResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>

@@ -10,22 +10,23 @@ import com.google.gson.GsonBuilder;
 import com.kea.services.QuestionnaireService_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
-import com.mycompany.questionnaire.Questionnaire;
-import com.mycompany.questionnaire.Question;
 
 /**
  *
- * @author Magnus Holgersen
+ * @author carst
  */
-@WebServlet(name = "QuestionnaireServlet", urlPatterns = {"/QuestionnaireServlet"})
-public class QuestionnaireServlet extends HttpServlet {
-
+@WebServlet(name = "SubmitAnswersServlet", urlPatterns = {"/SubmitAnswersServlet"})
+public class SubmitAnswersServlet extends HttpServlet {
+ 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/QuestionaireWebService/QuestionnaireService.wsdl")
     private QuestionnaireService_Service service;
 
@@ -38,61 +39,54 @@ public class QuestionnaireServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()){ // Call Web Service Operation
+        try (PrintWriter out = response.getWriter()) {
+            
             com.kea.services.QuestionnaireService port = service.getQuestionnaireServicePort();
-            // TODO initialize WS operation arguments here
-            java.lang.String name = request.getParameter("Selected");
-            // TODO process result here
-            java.lang.String result = port.getQuestionnaire(name);
             
-            Gson builder = new GsonBuilder().create();
-            Questionnaire q = builder.fromJson(result, Questionnaire.class);
+            java.lang.String name = request.getParameter("qName");
+            java.lang.String q = request.getParameter("question0");
             
-            //Question quest = (Question)q.getQuestions().get(0);
+            ArrayList answers = new ArrayList();
+            Enumeration<String> parameterNames = request.getParameterNames();
             
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < q.getQuestions().size(); i++) {
-                Question question = (Question)q.getQuestions().get(i);
-                sb.append("<p>" + question.getDescription() + "</p>\n");
-                for (int j = 0; j < question.getAnswers().size(); j++) {
-                    sb.append("<input type='radio' name='question" + i + "' value='"+j+"'>" + question.getAnswers().get(j));
-                    if (question.getAnswers().size() != j) {
-                        sb.append("<br>\n");
-                    } else {
-                        //sb.append("<hr>");
+            while (parameterNames.hasMoreElements()) {
+            String paramName = parameterNames.nextElement();
+            String[] paramValues = request.getParameterValues(paramName);
+                for (int i = 0; i < paramValues.length; i++) {
+                    String paramValue = paramValues[i];
+                    if (paramName.startsWith("question")) {
+                        answers.add(paramValue);
                     }
                 }
             }
             
-            String radioGroup = sb.toString();
+            Gson builder = new GsonBuilder().create();
+            String g = builder.toJson(answers, ArrayList.class);
             
+            String r = port.submitAnswers(g, name);
+            
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet QuestionnaireServlet</title>");            
+            out.println("<title>Servlet SubmitAnswersServlet</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>" + name + "</h1>");
-            out.println("<form name='submit' type='post' action='SubmitAnswersServlet'>");
-            out.println("<input type='hidden' name='qName' value='" + name + "'>");
-            out.println(radioGroup);
-            out.println("<input type='submit' value='Submit' name='submitButton'>");
-            out.println("</form>");
+            out.println("<p> " + r);
+            out.println("<form name='mainMenu' type='post' action=' '>");
+            out.println("<input type='submit' value='Main menu' name='mainMenu'>");
+            out.println("</form");
             out.println("</body>");
             out.println("</html>");
-            
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-        
-        
-         
-            
-            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -133,9 +127,5 @@ public class QuestionnaireServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    private void submitAnswers(){
-         System.out.println("submitting answers");   
-    }
 
 }

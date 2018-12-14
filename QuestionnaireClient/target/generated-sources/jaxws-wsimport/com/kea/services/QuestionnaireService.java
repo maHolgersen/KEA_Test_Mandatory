@@ -53,6 +53,24 @@ public interface QuestionnaireService {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "submitAnswers", targetNamespace = "http://services.kea.com/", className = "com.kea.services.SubmitAnswers")
+    @ResponseWrapper(localName = "submitAnswersResponse", targetNamespace = "http://services.kea.com/", className = "com.kea.services.SubmitAnswersResponse")
+    @Action(input = "http://services.kea.com/QuestionnaireService/submitAnswersRequest", output = "http://services.kea.com/QuestionnaireService/submitAnswersResponse")
+    public String submitAnswers(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
      * @param name
      * @return
      *     returns java.lang.String

@@ -77,4 +77,13 @@ public class Question implements Serializable{
     public void setPoints(int points){
         this.points = points;
     }
+    
+    public boolean isCorretAnswer(int answer){
+        boolean isCorrect = false;
+        if (getCorrectAnswer() == answer) {
+            isCorrect = true;
+        }
+        
+        return isCorrect;
+    }
 }
