@@ -62,7 +62,7 @@ public class LoadQuestionnaireServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoadQuestionnaireServlet</title>");            
+            out.println("<title>Questionnaires</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoadQuestionnaireServlet at " + request.getContextPath() + "</h1>");

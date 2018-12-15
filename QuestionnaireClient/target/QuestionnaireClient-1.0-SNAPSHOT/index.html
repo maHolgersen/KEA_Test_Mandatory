@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>KEA.Test</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     
     <body>
-        <form name="Test" method="post" action="QuestionnaireServlet">
-            <p>Enter the name of the questionnaire you want to load:</p>
-            <p>
-            <p><textarea rows="7" name="TextArea1" cols="40" ID="Textarea1"></textarea></p>
-            <p>
-            <input type="submit" value="Spell Check" name="spellcheckbutton">
+        <form name="createQuestionnaire" method="post" action="CreateQuestionnaireServlet">
+            <p>Click to create a questionnaire</p>
+            <input type="submit" value="Create questionnaire" name="createQuestionnaireButton">
         </form>
         <form name="Questionnaires" method="post" action="LoadQuestionnaireServlet">
-            <p>Click for Questionnaires</p>
-            <p>
-            <input type="submit" value="Questionnaires" name="Questionnairesbutton">
+            <p>Click to choose a Questionnaires</p>
+            <input type="submit" value="Questionnaires" name="QuestionnairesButton">
         </form>
     </body>
 </html>

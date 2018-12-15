@@ -84,7 +84,7 @@ public class QuestionnaireService {
                 score = score + question.getPoints();
             }
         }
-        if (score * 100 / q.getTotalPoints() > 80) {
+        if (score * 100 / q.getTotalPoints() >= 80) {
             sb.append("Passed! ");
         }else {
             sb.append("Failed! ");

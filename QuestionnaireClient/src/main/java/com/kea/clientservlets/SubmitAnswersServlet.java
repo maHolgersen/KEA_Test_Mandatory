@@ -74,7 +74,7 @@ public class SubmitAnswersServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SubmitAnswersServlet</title>");            
+            out.println("<title>Results</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>" + name + "</h1>");

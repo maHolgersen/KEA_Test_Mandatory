@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
  */
 public class FileController {
     
-    private final static String FILE_PATH = "E:\\Git\\KEA_Test_Mandatory\\QuestionaireWebService";
+    private final static String FILE_PATH =  "E:Git\\KEA_Test_Mandatory\\QuestionaireWebService";
     
     public static Questionnaire getQuestionnaire(String questionnaireName){
         Questionnaire q = null;
@@ -34,7 +35,7 @@ public class FileController {
                 ois.close();
                 fis.close();
             } catch(IOException | ClassNotFoundException ex){
-                System.out.println("well shit dident load! " + ex);
+                System.out.println("well shit dident load! " + ex );
             }
         return q;
     }
@@ -55,11 +56,14 @@ public class FileController {
         List qList = new ArrayList();
         try {
             for (File listFile : new File(FILE_PATH + "\\questionnaires").listFiles()) {
+                System.out.println(listFile.getCanonicalPath());
+                System.out.println(listFile.getAbsolutePath());
+                System.out.println(listFile.getPath());
                 qList.add(listFile.getName());
             }
         
         } catch(Exception ex){
-            System.out.println("well shit dident load: " + ex);
+            System.out.println("well shit dident load! " + ex);
         }
         
         return qList;
