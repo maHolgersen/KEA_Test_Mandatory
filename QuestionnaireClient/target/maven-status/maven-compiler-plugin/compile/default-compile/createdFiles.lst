@@ -1,5 +1,6 @@
 com\kea\clientservlets\QuestionnaireServlet.class
 com\kea\services\SubmitAnswers.class
+com\kea\clientservlets\SaveQuestionnaireServlet.class
 com\kea\clientservlets\SubmitAnswersServlet.class
 com\kea\services\QuestionnaireService.class
 com\kea\services\GetQuestionnaireResponse.class
@@ -12,4 +13,5 @@ com\kea\services\package-info.class
 com\kea\services\GetAllQuestionnairesResponse.class
 com\kea\services\GetAllQuestionnaires.class
 com\kea\services\QuestionnaireService_Service.class
+com\kea\clientservlets\CreateQuestionnaireServlet.class
 com\kea\services\SaveQuestionnaire.class

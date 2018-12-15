@@ -45,7 +45,7 @@ public class CreateQuestionnaireServlet extends HttpServlet {
                     + "var lastQ = 'lastAnswer' + i;\n"
                     + "console.log(lastQ);"
                     + "$(lastQ).append('Answer '+ x +' :<br/>"
-                    + "<input type=\"text\" name=\"answer '+ x +'\"><br/>'"
+                    + "<input type=\"text\" name=\"q'+ i +'answer'+ x +'\"><br/>'"
                     + ")}\n"
                     + "</script>";
             
@@ -62,10 +62,10 @@ public class CreateQuestionnaireServlet extends HttpServlet {
                     + "-----------------------------<br/>"
                     + "<input type=\"hidden\" value=\"1\" id=\"'+hiddenName+'\">"
                     + "Question ' +numQuest+ ':<br/>"
-                    + "<input type=\"textarea\" name=\"questionX\">"
+                    + "<input type=\"textarea\" name=\"question'+numQuest+'\">"
                     + "<input type=\"button\" value=\"add Answer\" name\"addAbutt\" onclick=\"addAnswer('+numQuest+')\"><br/>"
                     + "Answer 1:<br/>"
-                    + "<input type=\"text\" name\"qXaX\"><br/>"
+                    + "<input type=\"text\" name=\"q'+numQuest+'answer1\"><br/>"
                     + "<lastAnswer'+numQuest+'></lastAnswer'+numQuest+'>"
                     + "')}\n"
                     + "</script>";
@@ -82,19 +82,20 @@ public class CreateQuestionnaireServlet extends HttpServlet {
             out.println("<p> When done click on the save questionnaire button</p>");
             out.println("<p>OBS!!! be aware that as of right now, the first answer should be the correct one OBS!!!</p><br/><br/>");
             
-            out.println("<form name='questionnaire' type='post' action=' '>");
+            out.println("<form name='questionnaire' type='post' action='SaveQuestionnaireServlet'>");
             out.println("<input id='q1Answers' type='hidden' value='3'>");
             out.println("<p>Questionnaire Title:<br/>");
             out.println("<input type='text' name='questionnaireTitle'><br/>");
+            out.println("--------------------------------<br/>");
             out.println("Question 1:<br/>");
             out.println("<input type='textarea' name='question1'>");
             out.println("<input type='button' value='add Answer' name='addAbut' onclick=\"addAnswer(1)\"><br/>");
             out.println("Answer 1:<br/>");
-            out.println("<input type='text' name='answer1'><br/>");
+            out.println("<input type='text' name='q1answer1'><br/>");
             out.println("Answer 2:<br/>");
-            out.println("<input type='text' name='answer2'><br/>");
+            out.println("<input type='text' name='q1answer2'><br/>");
             out.println("Answer 3:<br/>");
-            out.println("<input type='text' name='answer3'><br/>");
+            out.println("<input type='text' name='q1answer3'><br/>");
             
             out.println("<lastAnswer1></lastAnswer1><br/>");
             
