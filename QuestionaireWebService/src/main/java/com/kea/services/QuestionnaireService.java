@@ -55,6 +55,7 @@ public class QuestionnaireService {
         Gson builder = new GsonBuilder().create();
         ArrayList list = (ArrayList)FileController.getALlQuestionnaires();
         String qList = builder.toJson(list, ArrayList.class);
+        System.out.println(qList);
         return qList;
     }
     /**

@@ -65,7 +65,7 @@ public class LoadQuestionnaireServlet extends HttpServlet {
             out.println("<title>Questionnaires</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoadQuestionnaireServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Select a Questionnaire you wish to answer!</h1>");
             out.println("<form name='selectQuestionnaire' method='post' action='QuestionnaireServlet'>");
             out.println("<select name='Selected'>");
             out.println(select);
